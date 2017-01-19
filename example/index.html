@@ -4,22 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OffCanvas</title>
-    <style>
-      .off-canvas {
-        position: absolute;
-        visibility: hidden;
-      }
-      .off-canvas,
-      .site-wrapper {
-        transition: transform .2s ease-in-out;
-      }
-    </style>
   </head>
   <body>
-    <div class="off-canvas" data-offcanvas="navleft">
+    <div data-offcanvas="navleft" style="position: absolute; visibility: hidden">
       <p>this is the left nav</p>
     </div>
-    <div class="off-canvas" data-offcanvas="navright">
+    <div data-offcanvas="navright" style="position: absolute; visibility: hidden">
       <p>this is the right nav</p>
     </div>
     <div class="site-wrapper" data-offcanvas-body>
