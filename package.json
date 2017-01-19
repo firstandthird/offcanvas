@@ -1,0 +1,47 @@
+{
+  "name": "offcanvas",
+  "version": "0.0.1",
+  "description": "Offcanvas menu library for browser",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently 'scriptkit dev --color' 'serve -p 8080'",
+    "prepublish": "NODE_ENV=production scriptkit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firstandthird/offcanvas.git"
+  },
+  "keywords": [
+    "browser",
+    "menu",
+    "mobile"
+  ],
+  "author": "First+Third <code@firstandthird.com> (http://firstandthird.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firstandthird/offcanvas/issues"
+  },
+  "homepage": "https://github.com/firstandthird/offcanvas#readme",
+  "devDependencies": {
+    "concurrently": "^3.1.0",
+    "eslint-config-firstandthird": "^3.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "scriptkit": "0.0.3",
+    "serve": "^2.4.2"
+  },
+  "scriptkit": {
+    "scripts": {
+      "dist/offcanvas.js": "index.js"
+    }
+  },
+  "eslintConfig": {
+    "extends": "firstandthird",
+    "env": {
+      "browser": true
+    }
+  },
+  "dependencies": {
+    "domassist": "1.1.0"
+  }
+}
