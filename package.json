@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently 'scriptkit dev --color' 'serve -p 8080'",
-    "prepublish": "NODE_ENV=production scriptkit",
+    "prepublish": "scriptkit --env production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
