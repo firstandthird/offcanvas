@@ -2,7 +2,7 @@
   "name": "offcanvas",
   "version": "0.0.1",
   "description": "Offcanvas menu library for browser",
-  "main": "index.js",
+  "main": "dist/offcanvas.js",
   "scripts": {
     "start": "concurrently 'scriptkit dev --color' 'serve -p 8080'",
     "prepublish": "scriptkit --env production",
