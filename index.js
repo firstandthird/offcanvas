@@ -3,6 +3,7 @@ import findOne from 'domassist/lib/findOne';
 import ready from 'domassist/lib/ready';
 import toArray from 'domassist/lib/toArray';
 import on from 'domassist/lib/on';
+import once from 'domassist/lib/once';
 
 class OffCanvas {
   constructor(options) {
@@ -11,6 +12,7 @@ class OffCanvas {
     this.bodyEl = options.body;
     this.visible = false;
     this.direction = 'left';
+    this.transition = 'transform .2s ease-in-out';
     this.setupMenu();
     this.setupTriggers(options.trigger);
   }
@@ -19,31 +21,33 @@ class OffCanvas {
     this.elWidth = this.el.clientWidth + 20;
     this.hide();
 
-    this.el.style.visibility = 'visible';
-    this.bodyEl.style.transition = 'transform .2s ease-in-out';
-    this.el.style.transition = 'transform .2s ease-in-out';
+    setTimeout(() => {
+      this.el.style.visibility = 'visible';
+      this.bodyEl.style.transition = this.transition;
+      this.el.style.transition = this.transition;
+    }, 1000);
   }
 
   setupTriggers(els) {
-    if (!els) {
-      return;
-    }
-    toArray(els).forEach((el) => {
-      on(el, 'click', this.toggle.bind(this));
-    });
+    toArray(els).forEach((el) => on(el, 'click', this.toggle.bind(this)));
   }
 
   show() {
-    this.bodyEl.style.transform = `translateX(${this.elWidth}px)`;
     document.body.style.overflow = 'hidden';
+    this.bodyEl.style.transform = `translateX(${this.elWidth}px)`;
     this.el.style.transform = 'translateX(0)';
-    this.el.style.width = 'auto';
+    this.visible = true;
+    //click anywhere on body to close
+    setTimeout(() => {
+      once(this.bodyEl, 'click', this.hide.bind(this));
+    }, 200);
   }
 
   hide() {
     this.bodyEl.style.transform = 'translateX(0px)';
     this.el.style.transform = `translateX(-${this.elWidth}px)`;
     document.body.style.overflow = 'auto';
+    this.visible = false;
   }
 
   toggle() {
@@ -52,7 +56,6 @@ class OffCanvas {
     } else {
       this.hide();
     }
-    this.visible = !this.visible;
   }
 }
 
