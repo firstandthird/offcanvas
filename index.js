@@ -11,7 +11,7 @@ class OffCanvas {
     this.el = options.el;
     this.bodyEl = options.body;
     this.visible = false;
-    this.direction = 'left';
+    this.position = options.position || 'left';
     this.transition = 'transform .2s ease-in-out';
     this.setupMenu();
     this.setupTriggers(options.trigger);
@@ -19,6 +19,10 @@ class OffCanvas {
 
   setupMenu() {
     this.elWidth = this.el.clientWidth + 20;
+
+    if (this.position === 'right') {
+      this.el.style.right = 0;
+    }
     this.hide();
 
     setTimeout(() => {
@@ -34,7 +38,7 @@ class OffCanvas {
 
   show() {
     document.body.style.overflow = 'hidden';
-    this.bodyEl.style.transform = `translateX(${this.elWidth}px)`;
+    this.bodyEl.style.transform = `translateX(${this.position === 'right' ? '-' : ''}${this.elWidth}px)`;
     this.el.style.transform = 'translateX(0)';
     this.visible = true;
     //click anywhere on body to close
@@ -45,7 +49,7 @@ class OffCanvas {
 
   hide() {
     this.bodyEl.style.transform = 'translateX(0px)';
-    this.el.style.transform = `translateX(-${this.elWidth}px)`;
+    this.el.style.transform = `translateX(${this.position === 'left' ? '-' : ''}${this.elWidth}px)`;
     document.body.style.overflow = 'auto';
     this.visible = false;
   }
@@ -74,7 +78,8 @@ ready(() => {
       name,
       el,
       body: findOne('[data-offcanvas-body]'),
-      trigger: find(`[data-offcanvas-trigger="${name}"]`)
+      trigger: find(`[data-offcanvas-trigger="${name}"]`),
+      position: el.getAttribute('data-offcanvas-position')
     });
   });
 });
