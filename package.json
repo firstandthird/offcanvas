@@ -5,7 +5,9 @@
   "main": "dist/offcanvas.js",
   "scripts": {
     "start": "concurrently 'scriptkit dev --color' 'serve -p 8080'",
-    "prepublish": "scriptkit --env production",
+    "dev": "scriptkit dev",
+    "build": "scriptkit build",
+    "prepublish": "scriptkit build --env production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,12 +29,17 @@
     "concurrently": "^3.1.0",
     "eslint-config-firstandthird": "^3.2.0",
     "eslint-plugin-import": "^2.2.0",
-    "scriptkit": "0.0.4",
+    "scriptkit": "0.0.10",
     "serve": "^2.4.2"
   },
   "scriptkit": {
+    "tasks": {
+      "default": ["build"]
+    },
     "scripts": {
-      "dist/offcanvas.js": "index.js"
+      "files": {
+        "dist/offcanvas.js": "index.js"
+      }
     }
   },
   "eslintConfig": {
@@ -42,6 +49,6 @@
     }
   },
   "dependencies": {
-    "domassist": "1.2.0"
+    "domassist": "1.3.2"
   }
 }

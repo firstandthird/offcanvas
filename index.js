@@ -1,9 +1,4 @@
-import find from 'domassist/lib/find';
-import findOne from 'domassist/lib/findOne';
-import ready from 'domassist/lib/ready';
-import toArray from 'domassist/lib/toArray';
-import on from 'domassist/lib/on';
-import once from 'domassist/lib/once';
+import { find, findOne, ready, toArray, on, once } from 'domassist';
 
 class OffCanvas {
   constructor(options) {
