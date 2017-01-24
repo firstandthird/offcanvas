@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "Offcanvas menu library for browser",
   "main": "dist/offcanvas.js",
+  "module": "index.js",
   "scripts": {
     "start": "concurrently 'scriptkit dev --color' 'serve -p 8080'",
     "dev": "scriptkit dev",
@@ -29,12 +30,12 @@
     "concurrently": "^3.1.0",
     "eslint-config-firstandthird": "^3.2.0",
     "eslint-plugin-import": "^2.2.0",
-    "scriptkit": "0.0.10",
+    "scriptkit": "0.0.13",
     "serve": "^2.4.2"
   },
   "scriptkit": {
-    "tasks": {
-      "default": ["build"]
+    "test": {
+      "enabled": false
     },
     "scripts": {
       "files": {
@@ -49,6 +50,6 @@
     }
   },
   "dependencies": {
-    "domassist": "1.3.2"
+    "domassist": "1.3.3"
   }
 }

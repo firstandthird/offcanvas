@@ -1,10 +1,10 @@
-import { find, findOne, ready, toArray, on, once } from 'domassist';
+import { find, ready, toArray, on, styles } from 'domassist';
 
 class OffCanvas {
   constructor(options) {
     this.name = options.name;
     this.el = options.el;
-    this.bodyEl = options.body;
+    this.bodyEl = document.body;
     this.visible = false;
     this.position = options.position || 'left';
     this.transition = 'transform .2s ease-in-out';
@@ -13,18 +13,26 @@ class OffCanvas {
   }
 
   setupMenu() {
-    this.elWidth = this.el.clientWidth + 20;
+    this.elWidth = this.el.clientWidth;
+
+    styles(this.el, {
+      [this.position]: 0,
+      transform: `translateX(${this.position === 'left' ? '-' : ''}${this.elWidth}px)`
+    });
 
     if (this.position === 'right') {
-      this.el.style.right = 0;
+      this.bodyEl.style['overflow-x'] = 'hidden';
     }
+
     this.hide();
 
     setTimeout(() => {
-      this.el.style.visibility = 'visible';
+      styles(this.el, {
+        visibility: 'visible',
+        transition: this.transition
+      });
       this.bodyEl.style.transition = this.transition;
-      this.el.style.transition = this.transition;
-    }, 1000);
+    }, 200);
   }
 
   setupTriggers(els) {
@@ -32,21 +40,45 @@ class OffCanvas {
   }
 
   show() {
-    document.body.style.overflow = 'hidden';
-    this.bodyEl.style.transform = `translateX(${this.position === 'right' ? '-' : ''}${this.elWidth}px)`;
-    this.el.style.transform = 'translateX(0)';
+    styles(this.bodyEl, {
+      'overflow-y': 'hidden',
+      transform: `translateX(${this.position === 'right' ? '-' : ''}${this.elWidth}px)`
+    });
     this.visible = true;
-    //click anywhere on body to close
-    setTimeout(() => {
-      once(this.bodyEl, 'click', this.hide.bind(this));
-    }, 200);
+    this.createOverlay();
   }
 
   hide() {
-    this.bodyEl.style.transform = 'translateX(0px)';
-    this.el.style.transform = `translateX(${this.position === 'left' ? '-' : ''}${this.elWidth}px)`;
-    document.body.style.overflow = 'auto';
+    styles(this.bodyEl, {
+      transform: 'translateX(0px)',
+      'overflow-y': 'auto'
+    });
     this.visible = false;
+    if (this.overlayEl) {
+      this.overlayEl.remove();
+    }
+  }
+
+  createOverlay() {
+    const overlayEl = document.createElement('div');
+    overlayEl.id = 'offcanvas-overlay';
+    const overlayStyles = {
+      position: 'fixed',
+      'background-color': '#000',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      opacity: 0,
+      transition: 'opacity .2s ease-in-out'
+    };
+    styles(overlayEl, overlayStyles);
+    on(overlayEl, 'click', this.hide.bind(this));
+    document.body.appendChild(overlayEl);
+    setTimeout(() => {
+      styles(overlayEl, { opacity: 0.3 });
+    }, 1);
+    this.overlayEl = overlayEl;
   }
 
   toggle() {
@@ -72,7 +104,6 @@ ready(() => {
     new OffCanvas({
       name,
       el,
-      body: findOne('[data-offcanvas-body]'),
       trigger: find(`[data-offcanvas-trigger="${name}"]`),
       position: el.getAttribute('data-offcanvas-position')
     });
