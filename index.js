@@ -1,4 +1,4 @@
-import { find, ready, toArray, on, styles } from 'domassist';
+import { find, ready, toArray, on, styles, addClass, removeClass } from 'domassist';
 
 class OffCanvas {
   constructor(options) {
@@ -44,6 +44,7 @@ class OffCanvas {
       'overflow-y': 'hidden',
       transform: `translateX(${this.position === 'right' ? '-' : ''}${this.elWidth}px)`
     });
+    addClass(this.bodyEl, 'offcanvas-visible');
     this.visible = true;
     this.createOverlay();
   }
@@ -53,6 +54,7 @@ class OffCanvas {
       transform: 'translateX(0px)',
       'overflow-y': 'auto'
     });
+    removeClass(this.bodyEl, 'offcanvas-visible');
     this.visible = false;
     if (this.overlayEl) {
       this.overlayEl.remove();
