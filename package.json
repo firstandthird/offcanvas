@@ -49,6 +49,6 @@
     }
   },
   "dependencies": {
-    "domassist": "1.3.2"
+    "domassist": "1.3.3"
   }
 }
