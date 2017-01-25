@@ -1,4 +1,9 @@
 
+0.0.5 / 2017-01-24
+==================
+
+  * quick and dirty way to just enable at a given media query
+
 0.0.4 / 2017-01-24
 ==================
 
