@@ -8,6 +8,9 @@ class OffCanvas {
     this.visible = false;
     this.position = options.position || 'left';
     this.transition = 'transform .2s ease-in-out';
+    if (window.matchMedia && options.match && !window.matchMedia(options.match).matches) {
+      return;
+    }
     this.setupMenu();
     this.setupTriggers(options.trigger);
   }
@@ -107,7 +110,8 @@ ready(() => {
       name,
       el,
       trigger: find(`[data-offcanvas-trigger="${name}"]`),
-      position: el.getAttribute('data-offcanvas-position')
+      position: el.getAttribute('data-offcanvas-position'),
+      match: el.getAttribute('data-offcanvas-match')
     });
   });
 });
