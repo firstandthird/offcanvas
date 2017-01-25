@@ -40,13 +40,13 @@ class OffCanvas {
   }
 
   show() {
+    this.createOverlay();
     styles(this.bodyEl, {
       'overflow-y': 'hidden',
       transform: `translateX(${this.position === 'right' ? '-' : ''}${this.elWidth}px)`
     });
     addClass(this.bodyEl, 'offcanvas-visible');
     this.visible = true;
-    this.createOverlay();
   }
 
   hide() {
@@ -57,7 +57,7 @@ class OffCanvas {
     removeClass(this.bodyEl, 'offcanvas-visible');
     this.visible = false;
     if (this.overlayEl) {
-      this.overlayEl.remove();
+      this.bodyEl.removeChild(this.overlayEl);
     }
   }
 
@@ -76,7 +76,7 @@ class OffCanvas {
     };
     styles(overlayEl, overlayStyles);
     on(overlayEl, 'click', this.hide.bind(this));
-    document.body.appendChild(overlayEl);
+    this.bodyEl.appendChild(overlayEl);
     setTimeout(() => {
       styles(overlayEl, { opacity: 0.3 });
     }, 1);
