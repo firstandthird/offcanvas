@@ -30,7 +30,7 @@
     "concurrently": "^3.1.0",
     "eslint-config-firstandthird": "^3.2.0",
     "eslint-plugin-import": "^2.2.0",
-    "scriptkit": "0.0.20",
+    "scriptkit": "0.0.22",
     "serve": "^2.4.2"
   },
   "scriptkit": {
