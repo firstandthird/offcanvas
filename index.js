@@ -1,4 +1,4 @@
-import { find, ready, toArray, on, styles, addClass, removeClass } from 'domassist';
+import { find, ready, toArray, on, once, styles, addClass, removeClass } from 'domassist';
 
 class OffCanvas {
   constructor(options) {
@@ -43,13 +43,16 @@ class OffCanvas {
   }
 
   show() {
-    this.createOverlay();
     styles(this.bodyEl, {
       'overflow-y': 'hidden',
       transform: `translateX(${this.position === 'right' ? '-' : ''}${this.elWidth}px)`
     });
     addClass(this.bodyEl, 'offcanvas-visible');
     this.visible = true;
+
+    setTimeout(() => {
+      once(this.bodyEl, 'click', this.hide.bind(this));
+    }, 300);
   }
 
   hide() {
@@ -59,31 +62,6 @@ class OffCanvas {
     });
     removeClass(this.bodyEl, 'offcanvas-visible');
     this.visible = false;
-    if (this.overlayEl) {
-      this.bodyEl.removeChild(this.overlayEl);
-    }
-  }
-
-  createOverlay() {
-    const overlayEl = document.createElement('div');
-    overlayEl.id = 'offcanvas-overlay';
-    const overlayStyles = {
-      position: 'fixed',
-      'background-color': '#000',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      opacity: 0,
-      transition: 'opacity .2s ease-in-out'
-    };
-    styles(overlayEl, overlayStyles);
-    on(overlayEl, 'click', this.hide.bind(this));
-    this.bodyEl.appendChild(overlayEl);
-    setTimeout(() => {
-      styles(overlayEl, { opacity: 0.3 });
-    }, 1);
-    this.overlayEl = overlayEl;
   }
 
   toggle() {
