@@ -1,4 +1,9 @@
 
+1.0.0 / 2017-02-08
+==================
+
+  * changing how the overlay works to make it work with IE. Breaking change.
+
 0.0.5 / 2017-01-24
 ==================
 
