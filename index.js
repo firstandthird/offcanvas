@@ -1,4 +1,4 @@
-import { find, ready, toArray, on, once, styles, addClass, removeClass } from 'domassist';
+import { find, ready, on, once, styles, addClass, removeClass } from 'domassist';
 
 class OffCanvas {
   constructor(options) {
@@ -39,7 +39,7 @@ class OffCanvas {
   }
 
   setupTriggers(els) {
-    toArray(els).forEach((el) => on(el, 'click', this.toggle.bind(this)));
+    els.forEach((el) => on(el, 'click', this.toggle.bind(this)));
   }
 
   show() {
@@ -82,7 +82,7 @@ ready(() => {
     return;
   }
 
-  toArray(find('[data-offcanvas]')).forEach((el) => {
+  find('[data-offcanvas]').forEach((el) => {
     const name = el.getAttribute('data-offcanvas');
     new OffCanvas({
       name,
