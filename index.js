@@ -1,21 +1,28 @@
-import { find, ready, on, once, styles, addClass, removeClass } from 'domassist';
+import { find, ready, on, once, styles, addClass, removeClass, hide, show } from 'domassist';
 
 class OffCanvas {
   constructor(options) {
     this.name = options.name;
     this.el = options.el;
+    this.options = options;
     this.bodyEl = document.body;
     this.visible = false;
     this.position = options.position || 'left';
     this.transition = 'transform .2s ease-in-out';
-    if (window.matchMedia && options.match && !window.matchMedia(options.match).matches) {
-      return;
-    }
+    this.setupEvents();
     this.setupMenu();
     this.setupTriggers(options.trigger);
   }
 
+  setupEvents() {
+    window.addEventListener('resize', this.setupMenu.bind(this));
+    window.addEventListener('orientationchange', this.setupMenu.bind(this));
+  }
+
   setupMenu() {
+    if (window.matchMedia && this.options.match && !window.matchMedia(this.options.match).matches) {
+      return;
+    }
     this.elWidth = this.el.clientWidth;
 
     styles(this.el, {
@@ -48,11 +55,27 @@ class OffCanvas {
       transform: `translateX(${this.position === 'right' ? '-' : ''}${this.elWidth}px)`
     });
     addClass(this.bodyEl, 'offcanvas-visible');
+    this.showOverlay();
     this.visible = true;
 
-    setTimeout(() => {
-      once(this.bodyEl, 'click', this.hide.bind(this));
-    }, 300);
+  }
+
+  showOverlay() {
+    if (this.overlayEl) {
+      show(this.overlayEl);
+      return;
+    }
+    this.overlayEl = document.createElement('div');
+    styles(this.overlayEl, {
+      backgroundColor: 'rgba(0,0,0,.3)',
+      position: 'absolute',
+      'z-index': '10',
+      top: 0,
+      width: '100%',
+      height: '100%'
+    });
+    on(this.overlayEl, 'click', this.hide.bind(this));
+    document.body.appendChild(this.overlayEl);
   }
 
   hide() {
@@ -62,6 +85,7 @@ class OffCanvas {
     });
     removeClass(this.bodyEl, 'offcanvas-visible');
     this.visible = false;
+    hide(this.overlayEl);
   }
 
   toggle() {
