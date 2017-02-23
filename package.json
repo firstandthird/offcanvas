@@ -5,7 +5,7 @@
   "main": "dist/offcanvas.js",
   "module": "index.js",
   "scripts": {
-    "start": "concurrently 'scriptkit dev --color' 'serve -p 8080'",
+    "start": "scriptkit",
     "dev": "scriptkit dev",
     "build": "scriptkit build",
     "prepublish": "scriptkit build --env production",
@@ -27,11 +27,9 @@
   },
   "homepage": "https://github.com/firstandthird/offcanvas#readme",
   "devDependencies": {
-    "concurrently": "^3.1.0",
-    "eslint-config-firstandthird": "^3.2.0",
-    "eslint-plugin-import": "^2.2.0",
-    "scriptkit": "0.0.22",
-    "serve": "^3.2.7"
+    "eslint-config-firstandthird": "3.2.0",
+    "eslint-plugin-import": "2.2.0",
+    "scriptkit": "0.1.0"
   },
   "scriptkit": {
     "test": {
