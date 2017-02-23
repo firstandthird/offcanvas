@@ -1,4 +1,4 @@
-import { find, ready, on, once, styles, addClass, removeClass, hide, show } from 'domassist';
+import { find, ready, on, styles, addClass, removeClass, hide, show } from 'domassist';
 
 class OffCanvas {
   constructor(options) {
@@ -57,7 +57,6 @@ class OffCanvas {
     addClass(this.bodyEl, 'offcanvas-visible');
     this.showOverlay();
     this.visible = true;
-
   }
 
   showOverlay() {
