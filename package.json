@@ -6,10 +6,10 @@
   "module": "index.js",
   "scripts": {
     "start": "scriptkit",
-    "dev": "scriptkit dev",
     "build": "scriptkit build",
-    "prepublish": "scriptkit build --env production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "scriptkit dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "scriptkit"
   },
   "repository": {
     "type": "git",
@@ -29,18 +29,20 @@
   "devDependencies": {
     "eslint-config-firstandthird": "3.2.0",
     "eslint-plugin-import": "2.2.0",
-    "scriptkit": "0.1.0"
+    "scriptkit": "0.2.0"
   },
   "scriptkit": {
     "test": {
       "enabled": false
     },
+    "files": {
+      "dist/offcanvas.js": "index.js"
+    },
     "scripts": {
       "babel": {
-        "exclude": ""
-      },
-      "files": {
-        "dist/offcanvas.js": "index.js"
+        "exclude": [
+          "node_modules/tape-rollup/*"
+        ]
       }
     }
   },
@@ -51,6 +53,6 @@
     }
   },
   "dependencies": {
-    "domassist": "1.7.1"
+    "domassist": "1.7.2"
   }
 }
