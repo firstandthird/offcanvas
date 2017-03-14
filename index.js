@@ -9,6 +9,8 @@ class OffCanvas {
     this.visible = false;
     this.position = options.position || 'left';
     this.transition = 'transform .2s ease-in-out';
+    this.scrollPosition = 0;
+
     this.setupEvents();
     this.setupMenu();
     this.setupTriggers(options.trigger);
@@ -41,6 +43,7 @@ class OffCanvas {
         visibility: 'visible',
         transition: this.transition
       });
+
       this.bodyEl.style.transition = this.transition;
     }, 200);
   }
@@ -50,6 +53,8 @@ class OffCanvas {
   }
 
   show() {
+    this.scrollPosition = document.documentElement.scrollTop ||
+        document.body.scrollTop;
     styles(this.bodyEl, {
       'overflow-y': 'hidden',
       transform: `translateX(${this.position === 'right' ? '-' : ''}${this.elWidth}px)`
@@ -79,12 +84,19 @@ class OffCanvas {
 
   hide() {
     styles(this.bodyEl, {
-      transform: 'translateX(0px)',
+      transform: '',
       'overflow-y': 'auto'
     });
     removeClass(this.bodyEl, 'offcanvas-visible');
     this.visible = false;
     hide(this.overlayEl);
+
+    if (this.scrollPosition) {
+      // Restoring scroll position
+      setTimeout(() => {
+        window.scrollTo(0, this.scrollPosition);
+      });
+    }
   }
 
   toggle() {
