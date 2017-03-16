@@ -1,0 +1,70 @@
+.offcanvas-overlay {
+    background: rgba(0, 0, 0, .3);
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    transition: opacity .5s ease, visibility .5s ease;
+    visibility: hidden;
+    width: 100%;
+}
+
+.offcanvas-overlay.visible {
+    cursor: pointer;
+    opacity: 1;
+    visibility: visible;
+}
+
+.offcanvas-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.offcanvas-content {
+    backface-visibility: hidden;
+    overflow: auto;
+    transition: transform .5s ease;
+}
+
+.offcanvas {
+    position: fixed;
+    transition: transform 0.5s ease;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.offcanvas.left {
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    transform: translateX(-250px);
+    overflow-y: auto;
+}
+
+.offcanvas.right {
+    height: 100%;
+    overflow-y: auto;
+    right: 0;
+    top: 0;
+    transform: translateX(250px);
+    width: 250px;
+}
+
+.offcanvas.open {
+    transform: translate(0, 0);
+}
+
+.offcanvas.left.open ~ .offcanvas-content {
+    transform: translateX(250px);
+}
+
+.offcanvas.right.open ~ .offcanvas-content {
+    transform: translateX(-250px);
+}
+
+.offcanvas-is-open {
+    overflow: hidden;
+}
