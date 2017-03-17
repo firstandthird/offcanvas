@@ -24,7 +24,6 @@
 
 .offcanvas-content {
     backface-visibility: hidden;
-    overflow: auto;
     transition: transform .5s ease;
 }
 
