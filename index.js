@@ -43,9 +43,9 @@ class OffCanvas {
         off(trigger, 'click', this.boundSetup));
   }
 
-  setupMenu() {
+  setup() {
     if (window.matchMedia && this.options.match &&
-        window.matchMedia(this.options.match).matches) {
+      !window.matchMedia(this.options.match).matches) {
       if (this.initialised) {
         this.destroy();
       }
@@ -55,6 +55,7 @@ class OffCanvas {
 
     this.initialised = true;
 
+    // Setting some default id for ARIA to work
     if (!this.el.id) {
       this.el.id = `offcanvas-${this.name}`;
     }
@@ -66,6 +67,10 @@ class OffCanvas {
     addClass(this.overlay, CLASSES.OVERLAY);
     document.body.appendChild(this.overlay);
     on(this.overlay, 'click', this.boundHide);
+
+    // Setting up the rest
+    this.setupEvents();
+    this.setupTriggers(this.options.trigger);
   }
 
   setupTriggers(els) {
