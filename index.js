@@ -4,7 +4,7 @@ const CLASSES = {
   OVERLAY: 'offcanvas-overlay',
   VISIBLE: 'visible',
   OPEN: 'open',
-  LOCK_OVERFLOW: ''
+  LOCK_OVERFLOW: 'offcanvas-is-open'
 };
 
 const SELECTORS = {
@@ -19,16 +19,14 @@ class OffCanvas {
     this.options = options;
     this.visible = false;
     this.initialised = false;
-    this.boundSetup = this.setupMenu.bind(this);
+    this.boundSetup = this.setup.bind(this);
     this.boundToggle = this.toggle.bind(this);
     this.boundHide = this.hide.bind(this);
     this.fixedEl = find(SELECTORS.FIXED);
     this.transitionTime = parseFloat(
         window.getComputedStyle(this.el).transitionDuration) * 1000;
 
-    this.setupEvents();
-    this.setupMenu();
-    this.setupTriggers(options.trigger);
+    this.setup();
   }
 
   setupEvents() {
