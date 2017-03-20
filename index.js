@@ -4,7 +4,8 @@ const CLASSES = {
   OVERLAY: 'offcanvas-overlay',
   VISIBLE: 'visible',
   OPEN: 'open',
-  LOCK_OVERFLOW: 'offcanvas-is-open'
+  LOCK_OVERFLOW: 'offcanvas-is-open',
+  READY: 'offcanvas-ready'
 };
 
 const SELECTORS = {
@@ -71,6 +72,11 @@ class OffCanvas {
     // Setting up the rest
     this.setupEvents();
     this.setupTriggers(this.options.trigger);
+
+    // Making it ready to fix browser issues
+    setTimeout(() => {
+      addClass(document.body, CLASSES.READY);
+    }, this.transitionTime)
   }
 
   setupTriggers(els) {
