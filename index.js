@@ -4,7 +4,8 @@ const CLASSES = {
   OVERLAY: 'offcanvas-overlay',
   VISIBLE: 'visible',
   OPEN: 'open',
-  LOCK_OVERFLOW: 'offcanvas-is-open'
+  LOCK_OVERFLOW: 'offcanvas-is-open',
+  READY: 'offcanvas-ready'
 };
 
 const SELECTORS = {
@@ -27,6 +28,7 @@ class OffCanvas {
         window.getComputedStyle(this.el).transitionDuration) * 1000;
 
     this.setup();
+    this.setupEvents();
   }
 
   setupEvents() {
@@ -35,25 +37,26 @@ class OffCanvas {
   }
 
   destroy() {
-    off(window, 'resize', this.boundSetup);
-    off(window, 'orientationchange', this.boundSetup);
     off(this.overlay, 'click', this.boundHide);
 
     this.options.trigger.forEach(trigger =>
         off(trigger, 'click', this.boundSetup));
+    this.overlay.remove();
+    this.overlay = null;
+    this.initialized = false;
   }
 
   setup() {
     if (window.matchMedia && this.options.match &&
       !window.matchMedia(this.options.match).matches) {
-      if (this.initialised) {
+      if (this.initialized) {
         this.destroy();
       }
 
       return;
     }
 
-    this.initialised = true;
+    this.initialized = true;
 
     // Setting some default id for ARIA to work
     if (!this.el.id) {
@@ -63,14 +66,24 @@ class OffCanvas {
     this.updateAria();
 
     // Creating overlay
-    this.overlay = document.createElement('div');
-    addClass(this.overlay, CLASSES.OVERLAY);
-    document.body.appendChild(this.overlay);
-    on(this.overlay, 'click', this.boundHide);
+    this.setupOverlay();
 
     // Setting up the rest
-    this.setupEvents();
     this.setupTriggers(this.options.trigger);
+
+    // Making it ready to fix browser issues
+    setTimeout(() => {
+      addClass(document.body, CLASSES.READY);
+    }, this.transitionTime);
+  }
+
+  setupOverlay() {
+    if (!this.overlay) {
+      this.overlay = document.createElement('div');
+      addClass(this.overlay, CLASSES.OVERLAY);
+      document.body.appendChild(this.overlay);
+      on(this.overlay, 'click', this.boundHide);
+    }
   }
 
   setupTriggers(els) {
