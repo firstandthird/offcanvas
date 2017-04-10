@@ -53,6 +53,6 @@
     }
   },
   "dependencies": {
-    "domassist": "1.7.2"
+    "domassist": "1.8.0"
   }
 }
