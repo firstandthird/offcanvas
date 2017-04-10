@@ -1,6 +1,6 @@
 {
   "name": "offcanvas",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "description": "Offcanvas menu library for browser",
   "main": "dist/offcanvas.js",
   "module": "index.js",
