@@ -41,7 +41,7 @@ class OffCanvas {
 
     this.options.trigger.forEach(trigger =>
         off(trigger, 'click', this.boundSetup));
-    this.overlay.remove();
+    this.overlay.parentNode.removeChild(this.overlay);
     this.overlay = null;
     this.initialized = false;
   }
