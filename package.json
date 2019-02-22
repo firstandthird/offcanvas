@@ -29,7 +29,7 @@
   "devDependencies": {
     "eslint-config-firstandthird": "^4.3.0",
     "eslint-plugin-import": "^2.16.0",
-    "scriptkit": "^2.0.0"
+    "scriptkit": "^2.0.1"
   },
   "scriptkit": {
     "test": {
