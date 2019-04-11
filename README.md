@@ -1,6 +1,6 @@
 # offcanvas
 
-<span class="offcanvas-npmversion"><a href="https://npmjs.org/package/offcanvas" title="View this project on NPM"><img src="https://img.shields.io/npm/v/offcanvas.svg" alt="NPM version" /></a></span>
+![npm](https://img.shields.io/npm/v/offcanvas.svg)
 
 Javascript library for off canvas (mobile style) menus
 
