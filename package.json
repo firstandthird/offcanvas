@@ -29,11 +29,14 @@
   "devDependencies": {
     "eslint-config-firstandthird": "^4.3.0",
     "eslint-plugin-import": "^2.16.0",
-    "scriptkit": "^2.0.1"
+    "scriptkit": "^2.0.3"
   },
   "scriptkit": {
     "test": {
       "enabled": false
+    },
+    "serve": {
+      "enabled": true
     },
     "files": {
       "dist/offcanvas.js": "index.js"
@@ -53,6 +56,6 @@
     }
   },
   "dependencies": {
-    "domassist": "^2.0.1"
+    "domassist": "^2.0.2"
   }
 }
