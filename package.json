@@ -1,6 +1,6 @@
 {
   "name": "offcanvas",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Offcanvas menu library for browser",
   "main": "index.js",
   "module": "dist/offcanvas.esm.js",
