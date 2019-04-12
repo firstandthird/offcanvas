@@ -1,4 +1,7 @@
 # offcanvas
+
+![npm](https://img.shields.io/npm/v/offcanvas.svg)
+
 Javascript library for off canvas (mobile style) menus
 
 ## Installation
