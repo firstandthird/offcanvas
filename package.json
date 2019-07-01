@@ -3,11 +3,12 @@
   "version": "3.0.1",
   "description": "Offcanvas menu library for browser",
   "main": "index.js",
-  "module": "dist/offcanvas.esm.js",
+  "module": "dist/offcanvas.js",
   "scripts": {
     "start": "scriptkit",
     "build": "scriptkit build",
     "dev": "scriptkit dev",
+    "pretest": "scriptkit build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "scriptkit"
   },
@@ -27,9 +28,9 @@
   },
   "homepage": "https://github.com/firstandthird/offcanvas#readme",
   "devDependencies": {
-    "eslint-config-firstandthird": "^4.3.0",
-    "eslint-plugin-import": "^2.16.0",
-    "scriptkit": "^2.0.3"
+    "eslint-config-firstandthird": "^4.4.0",
+    "eslint-plugin-import": "^2.18.0",
+    "scriptkit": "^3.0.0"
   },
   "scriptkit": {
     "test": {
@@ -56,6 +57,6 @@
     }
   },
   "dependencies": {
-    "domassist": "^2.0.2"
+    "domassist": "^2.2.0"
   }
 }
