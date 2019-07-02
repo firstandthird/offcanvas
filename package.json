@@ -8,7 +8,6 @@
     "start": "scriptkit",
     "build": "scriptkit build",
     "dev": "scriptkit dev",
-    "pretest": "scriptkit build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "scriptkit"
   },
