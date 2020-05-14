@@ -1,4 +1,4 @@
-import { find, ready, on, off, addClass, removeClass } from 'domassist';
+import { find, ready, on, addClass, removeClass } from 'domassist';
 
 const CLASSES = {
   OVERLAY: 'offcanvas-overlay',
@@ -19,13 +19,12 @@ class OffCanvas {
     this.el = options.el;
     this.options = options;
     this.visible = false;
-    this.initialised = false;
     this.boundSetup = this.setup.bind(this);
     this.boundToggle = this.toggle.bind(this);
     this.boundHide = this.hide.bind(this);
     this.fixedEl = find(SELECTORS.FIXED);
     this.transitionTime = parseFloat(
-        window.getComputedStyle(this.el).transitionDuration) * 1000;
+      window.getComputedStyle(this.el).transitionDuration) * 1000;
 
     this.setup();
     this.setupEvents();
@@ -37,22 +36,24 @@ class OffCanvas {
   }
 
   destroy() {
-    off(this.overlay, 'click', this.boundHide);
+    this.overlay.removeEventListener('click', this.boundHide);
 
-    this.options.trigger.forEach(trigger =>
-        off(trigger, 'click', this.boundSetup));
+    this.options.trigger.forEach(trigger => trigger.removeEventListener('click', this.boundToggle));
     this.overlay.parentNode.removeChild(this.overlay);
     this.overlay = null;
     this.initialized = false;
   }
 
   setup() {
-    if (window.matchMedia && this.options.match &&
-      !window.matchMedia(this.options.match).matches) {
+    if (this.options.match && !window.matchMedia(this.options.match).matches) {
       if (this.initialized) {
         this.destroy();
       }
 
+      return;
+    }
+
+    if (this.initialized) {
       return;
     }
 
@@ -82,13 +83,13 @@ class OffCanvas {
       this.overlay = document.createElement('div');
       addClass(this.overlay, CLASSES.OVERLAY);
       document.body.appendChild(this.overlay);
-      on(this.overlay, 'click', this.boundHide);
+      this.overlay.addEventListener('click', this.boundHide);
     }
   }
 
   setupTriggers(els) {
     els.forEach(el => {
-      on(el, 'click', this.boundToggle);
+      el.addEventListener('click', this.boundToggle);
       el.setAttribute('aria-controls', this.el.id);
     });
   }
@@ -113,7 +114,7 @@ class OffCanvas {
     if (this.fixedEl) {
       this.fixedEl.forEach(el => {
         el.style.top = `${document.documentElement.scrollTop ||
-          document.body.scrollTop}px`;
+        document.body.scrollTop}px`;
       });
     }
   }
