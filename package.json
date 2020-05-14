@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/firstandthird/offcanvas#readme",
   "devDependencies": {
-    "eslint-config-firstandthird": "^4.4.0",
-    "eslint-plugin-import": "^2.18.0",
+    "eslint-config-firstandthird": "^5.0.0",
+    "eslint-plugin-import": "^2.20.2",
     "scriptkit": "^3.0.0"
   },
   "scriptkit": {
