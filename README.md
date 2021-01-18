@@ -41,6 +41,8 @@ Use the [CSS](example/offcanvas.css) that's shown on the example and customise t
 </body>
 ```
 
+If you are using a fixed element to stick a navigation to the top, you can add the attribute `data-offcanvas-fixed` so once the offcanvas is shown it doesn't go to the top due to transform causing fixed elements to be absolute. See the [example](example/index.html) for more information.
+
 ### CSS
 
 ```css
@@ -51,8 +53,6 @@ Use the [CSS](example/offcanvas.css) that's shown on the example and customise t
 ```js
 import 'offcanvas';
 ```
-
-If you are using a fixed element to stick a navigation to the top, you can add the attribute `data-offcanvas-fixed` so once the offcanvas is shown it doesn't go to the top due to transform causing fixed elements to be absolute. See the example for more information.
 
 ---
 
