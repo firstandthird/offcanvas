@@ -8,7 +8,7 @@
     "start": "scriptkit",
     "build": "scriptkit build",
     "dev": "scriptkit dev",
-    "lint": "eslint index.js",
+    "lint": "eslint index.js && stylelint offcanvas.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run lint && scriptkit"
   },
@@ -35,6 +35,7 @@
     "eslint-config-firstandthird": "^6.0.2",
     "eslint-plugin-import": "^2.22.1",
     "scriptkit": "^3.0.0",
+    "stylelint": "13.8.0",
     "stylelint-config-firstandthird": "^1.2.0"
   },
   "scriptkit": {
