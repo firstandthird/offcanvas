@@ -117,6 +117,8 @@ class OffCanvas {
         document.body.scrollTop}px`;
       });
     }
+
+    this.updateAria();
   }
 
   hide() {
@@ -136,6 +138,8 @@ class OffCanvas {
         });
       }, this.transitionTime);
     }
+
+    this.updateAria();
   }
 
   toggle() {
@@ -144,8 +148,6 @@ class OffCanvas {
     } else {
       this.hide();
     }
-
-    this.updateAria();
   }
 }
 
