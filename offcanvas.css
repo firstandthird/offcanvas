@@ -1,69 +1,69 @@
 .offcanvas-overlay {
-    background: rgba(0, 0, 0, .3);
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    transition: opacity .5s ease, visibility .5s ease;
-    visibility: hidden;
-    width: 100%;
+  background: rgba(0, 0, 0, .3);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  transition: opacity .5s ease, visibility .5s ease;
+  visibility: hidden;
+  width: 100%;
 }
 
 .offcanvas-overlay.visible {
-    cursor: pointer;
-    opacity: 1;
-    visibility: visible;
+  cursor: pointer;
+  opacity: 1;
+  visibility: visible;
 }
 
 .offcanvas-wrapper {
-    overflow: hidden;
-    position: relative;
+  overflow: hidden;
+  position: relative;
 }
 
 .offcanvas-content {
-    backface-visibility: hidden;
-    transition: transform .5s ease;
+  backface-visibility: hidden;
+  transition: transform .5s ease;
 }
 
 .offcanvas {
-    position: fixed;
-    transition: transform 0.5s ease;
-    z-index: 1;
-    backface-visibility: hidden;
+  position: fixed;
+  transition: transform .5s ease;
+  z-index: 1;
+  backface-visibility: hidden;
 }
 
 .offcanvas.left {
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    transform: translate3d(-250px, 0, 0);
-    overflow-y: auto;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  transform: translate3d(-250px, 0, 0);
+  overflow-y: auto;
 }
 
 .offcanvas.right {
-    height: 100%;
-    overflow-y: auto;
-    right: 0;
-    top: 0;
-    transform: translate3d(250px, 0, 0);
-    width: 250px;
+  height: 100%;
+  overflow-y: auto;
+  right: 0;
+  top: 0;
+  transform: translate3d(250px, 0, 0);
+  width: 250px;
 }
 
 .offcanvas.open {
-    transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .offcanvas.left.open ~ .offcanvas-content {
-    transform: translate3d(250px, 0, 0);
+  transform: translate3d(250px, 0, 0);
 }
 
 .offcanvas.right.open ~ .offcanvas-content {
-    transform: translate3d(-250px, 0, 0);
+  transform: translate3d(-250px, 0, 0);
 }
 
 .offcanvas-is-open {
-    overflow: hidden;
+  overflow: hidden;
 }

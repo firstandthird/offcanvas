@@ -144,6 +144,8 @@ class OffCanvas {
     } else {
       this.hide();
     }
+
+    this.updateAria();
   }
 }
 

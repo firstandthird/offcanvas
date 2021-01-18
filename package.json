@@ -8,8 +8,9 @@
     "start": "scriptkit",
     "build": "scriptkit build",
     "dev": "scriptkit dev",
+    "lint": "eslint index.js && stylelint offcanvas.css",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "scriptkit"
+    "prepublishOnly": "npm run lint && scriptkit"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,16 @@
     "url": "https://github.com/firstandthird/offcanvas/issues"
   },
   "homepage": "https://github.com/firstandthird/offcanvas#readme",
+  "dependencies": {
+    "domassist": "^2.2.0"
+  },
   "devDependencies": {
-    "eslint-config-firstandthird": "^5.0.0",
-    "eslint-plugin-import": "^2.20.2",
-    "scriptkit": "^3.0.0"
+    "eslint": "^7.18.0",
+    "eslint-config-firstandthird": "^6.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "scriptkit": "^3.0.0",
+    "stylelint": "13.8.0",
+    "stylelint-config-firstandthird": "^1.2.0"
   },
   "scriptkit": {
     "test": {
@@ -49,13 +56,13 @@
       }
     }
   },
+  "stylelint": {
+    "extends": "stylelint-config-firstandthird"
+  },
   "eslintConfig": {
     "extends": "firstandthird",
     "env": {
       "browser": true
     }
-  },
-  "dependencies": {
-    "domassist": "^2.2.0"
   }
 }
