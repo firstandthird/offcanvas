@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/firstandthird/offcanvas#readme",
   "dependencies": {
-    "domassist": "^2.2.0"
+    "domassist": "^2.3.1"
   },
   "devDependencies": {
     "eslint": "^7.18.0",

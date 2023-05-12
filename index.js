@@ -1,4 +1,4 @@
-import { find, ready, on, addClass, removeClass } from 'domassist';
+import { find, ready, on, addClass, removeClass, fire } from 'domassist';
 
 const CLASSES = {
   OVERLAY: 'offcanvas-overlay',
@@ -110,6 +110,7 @@ class OffCanvas {
     addClass(this.el, CLASSES.OPEN);
     addClass(this.overlay, CLASSES.VISIBLE);
     addClass(document.body, CLASSES.LOCK_OVERFLOW);
+    fire(this.el, 'offcanvas:show');
 
     if (this.fixedEl) {
       this.fixedEl.forEach(el => {
@@ -130,6 +131,7 @@ class OffCanvas {
     removeClass(this.el, CLASSES.OPEN);
     removeClass(this.overlay, CLASSES.VISIBLE);
     removeClass(document.body, CLASSES.LOCK_OVERFLOW);
+    fire(this.el, 'offcanvas:hide');
 
     if (this.fixedEl) {
       setTimeout(() => {
